@@ -1,0 +1,9 @@
+transformers
+torch
+bitsandbytes
+accelerate
+peft
+wandb
+trl
+datasets
+panel
