@@ -6,8 +6,6 @@ import torch
 pn.extension()
 
 async def callback(contents: str, user: str, instance: pn.chat.ChatInterface):
-    #print(instance)
-    #print(instance._button_data)
     messages = [{"role": "user", "content": contents}]
     chat.append({"role": "user", "content": contents})
     prompt = pipeline.tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True, skip_special_tokens=True)
@@ -17,9 +15,8 @@ async def callback(contents: str, user: str, instance: pn.chat.ChatInterface):
         message += token
         yield message
     chat.append({"role": "assistant", "content": message})    
-#model = "mistralai/Mistral-7B-v0.1"
+    
 model = "mistralai/Mixtral-8x7B-Instruct-v0.1"
-model_finetuned = "/home/lruiz/gemma/mistral-8x7b-Instruct-Forocoches-v0.1"
 chat=[]
 tokenizer = AutoTokenizer.from_pretrained(model)
 pipeline = transformers.pipeline(
